@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function AboutPage() {
   const pillars = [
     { icon: '🎯', title: 'Precision', desc: 'State-of-the-art GPS and total station technology for survey-grade accuracy.' },
@@ -22,10 +20,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-off-white font-light leading-[1.85]">
               <p>
-                VANROX Engineering and Surveying Services is a trusted leader in land surveying and engineering consultancy across Trinidad & Tobago. We combine modern technology with deep local knowledge to deliver results with unmatched accuracy.
+                VANROX Engineering and Surveying Services is a trusted leader in land surveying and engineering consultancy across Trinidad &amp; Tobago. We combine modern technology with deep local knowledge to deliver results with unmatched accuracy.
               </p>
               <p>
-                Our team of licensed surveyors and engineers brings decades of combined experience to every project — whether it's a residential boundary survey, a large-scale infrastructure development, or a complex topographic assessment.
+                Our team of licensed surveyors and engineers brings decades of combined experience to every project &mdash; whether it&apos;s a residential boundary survey, a large-scale infrastructure development, or a complex topographic assessment.
               </p>
             </div>
 

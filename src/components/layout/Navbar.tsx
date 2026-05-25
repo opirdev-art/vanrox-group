@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Calendar } from 'lucide-react'
 
 export default function Navbar() {
   return (
