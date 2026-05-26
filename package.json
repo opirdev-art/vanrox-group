@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "supabase:login": "supabase login",
+    "supabase:link": "supabase link --project-ref stcacpadxbugkmnomzzk",
+    "supabase:types": "supabase gen types typescript --project-id stcacpadxbugkmnomzzk --schema public > src/types/database.types.ts",
+    "supabase:types:linked": "supabase gen types typescript --linked --schema public > src/types/database.types.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
@@ -27,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "supabase": "^2.101.0"
   }
 }
