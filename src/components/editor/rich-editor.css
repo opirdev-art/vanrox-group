@@ -1,0 +1,174 @@
+/*
+  TipTap editor canvas — dark navy theme matching vanrox brand.
+  .tiptap class applied via editorProps.attributes.class in RichEditor.tsx.
+*/
+
+/* ── Headings ────────────────────────────────────────────────────────────── */
+.tiptap h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.75rem;
+  margin-bottom: 0.625rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.tiptap h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  border-bottom: 2px solid #7dc242;
+  padding-bottom: 0.25rem;
+}
+
+.tiptap h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.375rem;
+  color: #e8edf5;
+}
+
+/* ── Body paragraph ──────────────────────────────────────────────────────── */
+.tiptap p {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #8a9bb5;
+}
+
+/* ── Lists ───────────────────────────────────────────────────────────────── */
+.tiptap ul,
+.tiptap ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tiptap ul { list-style-type: disc; }
+.tiptap ol { list-style-type: decimal; }
+
+.tiptap li {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 0.25rem;
+  color: #8a9bb5;
+}
+
+.tiptap li p { margin: 0; }
+
+/* ── Blockquote ──────────────────────────────────────────────────────────── */
+.tiptap blockquote {
+  border-left: 3px solid #7dc242;
+  padding: 0.5rem 1rem;
+  margin: 1.25rem 0;
+  background: rgba(125, 194, 66, 0.06);
+  color: #e8edf5;
+  font-style: italic;
+}
+
+.tiptap blockquote p { margin-bottom: 0; color: #e8edf5; }
+
+/* ── Inline code ─────────────────────────────────────────────────────────── */
+.tiptap code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #7dc242;
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.2rem;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* ── Code block ──────────────────────────────────────────────────────────── */
+.tiptap pre {
+  background: #0b1828;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.tiptap pre code {
+  background: none;
+  color: #e8edf5;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── HR ──────────────────────────────────────────────────────────────────── */
+.tiptap hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 2rem 0;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────────── */
+.tiptap a { color: #7dc242; text-decoration: underline; text-underline-offset: 2px; }
+.tiptap a:hover { color: #9cd65a; }
+
+/* ── Strong / em ─────────────────────────────────────────────────────────── */
+.tiptap strong { font-weight: 700; color: #e8edf5; }
+.tiptap em { color: #8a9bb5; }
+
+/* ── Placeholder ─────────────────────────────────────────────────────────── */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: rgba(138, 155, 181, 0.45);
+  pointer-events: none;
+  height: 0;
+  float: left;
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────── */
+.tiptap table { border-collapse: collapse; width: 100%; margin: 1.25rem 0; font-size: 0.875rem; }
+.tiptap th, .tiptap td { border: 1px solid rgba(255,255,255,0.08); padding: 0.5rem 0.75rem; text-align: left; color: #8a9bb5; }
+.tiptap th { background: rgba(255,255,255,0.04); font-weight: 600; color: #e8edf5; }
+
+/* ── Inline media figure ─────────────────────────────────────────────────── */
+.tiptap figure[data-block="media"] {
+  margin: 1.5rem 0;
+  border: 1px dashed rgba(125, 194, 66, 0.3);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  background: rgba(125, 194, 66, 0.04);
+}
+
+.tiptap figure[data-block="media"] img {
+  width: 100%;
+  border-radius: 0.25rem;
+  display: block;
+}
+
+.tiptap figure[data-block="media"] .cs-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.tiptap figure[data-block="media"] .cs-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tiptap figure[data-block="media"] figcaption {
+  font-size: 0.75rem;
+  color: rgba(138, 155, 181, 0.7);
+  margin-top: 0.375rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── First child spacing ─────────────────────────────────────────────────── */
+.tiptap > :first-child { margin-top: 0; }

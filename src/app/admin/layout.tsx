@@ -1,15 +1,19 @@
-import { LayoutDashboard, Calendar, FileText, Users, Settings, LogOut, MessageSquare } from 'lucide-react'
+import { LayoutDashboard, Calendar, FileText, Users, Settings, MessageSquare, Briefcase } from 'lucide-react'
 import Link from 'next/link'
+import { requireAdmin } from '@/lib/auth/require-admin'
+import { LogoutButton } from './logout-button'
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  await requireAdmin()
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', href: '/admin' },
     { icon: MessageSquare, label: 'Leads & Quotes', href: '/admin/leads' },
     { icon: Calendar, label: 'Scheduler', href: '/admin/scheduler' },
+    { icon: Briefcase, label: 'Services', href: '/admin/services' },
     { icon: FileText, label: 'Blog Posts', href: '/admin/blog' },
     { icon: Users, label: 'Referrals', href: '/admin/referrals' },
     { icon: Settings, label: 'Settings', href: '/admin/settings' },
@@ -46,10 +50,7 @@ export default function AdminLayout({
         </nav>
 
         <div className="p-4 border-t border-white/5">
-          <button className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-md transition-all font-barlow-condensed text-[0.9rem] font-bold tracking-widest uppercase">
-            <LogOut size={20} />
-            Logout
-          </button>
+          <LogoutButton />
         </div>
       </aside>
 

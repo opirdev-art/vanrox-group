@@ -30,8 +30,17 @@ export default function Footer() {
       </div>
 
       <div className="flex flex-wrap justify-between items-center pt-5 gap-2.5">
-        <div className="text-[0.78rem] text-gray">
-          © {new Date().getFullYear()} <span className="text-green">VANROX</span> Engineering and Surveying Services. All rights reserved.
+        <div className="text-[0.78rem] text-gray flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span>
+            © {new Date().getFullYear()} <span className="text-green">VANROX</span> Engineering and Surveying Services. All rights reserved.
+          </span>
+          <span className="text-white/10 hidden sm:inline" aria-hidden="true">·</span>
+          <Link
+            href="/login"
+            className="text-white/25 hover:text-white/45 text-[0.65rem] tracking-[0.2em] uppercase transition-colors"
+          >
+            Staff
+          </Link>
         </div>
         <div className="font-barlow-condensed text-[0.75rem] font-semibold tracking-[3px] uppercase text-gray/50">
           Mapping a Better Future | Tobago: 2721240

@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "supabase:login": "supabase login",
     "supabase:link": "supabase link --project-ref stcacpadxbugkmnomzzk",
     "supabase:types": "supabase gen types typescript --project-id stcacpadxbugkmnomzzk --schema public > src/types/database.types.ts",
@@ -15,23 +17,38 @@
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.2",
+    "@tiptap/extension-bubble-menu": "^3.26.0",
+    "@tiptap/extension-character-count": "^3.26.0",
+    "@tiptap/extension-floating-menu": "^3.26.0",
+    "@tiptap/extension-link": "^3.26.0",
+    "@tiptap/extension-placeholder": "^3.26.0",
+    "@tiptap/extension-underline": "^3.26.0",
+    "@tiptap/pm": "^3.26.0",
+    "@tiptap/react": "^3.26.0",
+    "@tiptap/starter-kit": "^3.26.0",
     "clsx": "^2.1.1",
+    "leaflet": "^1.9.4",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwind-merge": "^3.6.0",
-    "zod": "^4.4.3"
+    "react-leaflet": "^5.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/leaflet": "^1.9.21",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "supabase": "^2.101.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "supabase": "^2.101.0"
+    "vitest": "^4.1.8"
   }
 }
