@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -8,6 +9,43 @@ function coverImage(study: { media: { url: string; is_cover: boolean; media_type
   const cover = study.media.find((m) => m.is_cover && m.media_type === 'image')
   const firstImage = study.media.find((m) => m.media_type === 'image')
   return cover?.url ?? firstImage?.url ?? null
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  let detail: Awaited<ReturnType<typeof getPublishedServiceDetailBySlug>> = null
+  try {
+    detail = await getPublishedServiceDetailBySlug(slug)
+  } catch {
+    detail = null
+  }
+
+  if (!detail) {
+    return { title: 'Service Not Found' }
+  }
+
+  const tagline = detail.page?.tagline ?? detail.description ?? ''
+  const title = `${detail.name} | VANROX Engineering & Surveying TT`
+  const description = tagline
+    ? `${tagline} — Professional ${detail.name.toLowerCase()} services across Trinidad & Tobago by VANROX Engineering.`
+    : `Professional ${detail.name.toLowerCase()} services across Trinidad & Tobago. Licensed, precise, and trusted by 500+ clients. VANROX Engineering.`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.vanrox-group.com/services/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://www.vanrox-group.com/services/${slug}`,
+    },
+  }
 }
 
 export async function generateStaticParams() {

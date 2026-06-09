@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import Reviews from "@/components/home/Reviews";
 import { getBusinessSettings } from "@/lib/settings/queries";
 
 export default async function Home() {
@@ -7,6 +8,7 @@ export default async function Home() {
   return (
     <>
       <Hero serviceArea={settings.address || undefined} />
+      <Reviews />
     </>
   );
 }

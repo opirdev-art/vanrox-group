@@ -26,6 +26,12 @@ export const NOTIFICATION_PREFERENCE_ROWS: NotificationPreferenceRow[] = [
     defaults: { in_app: true, email: false },
   },
   {
+    eventType: 'business.review.submitted',
+    label: 'Review Submitted',
+    group: 'business',
+    defaults: { in_app: true, email: true },
+  },
+  {
     eventType: 'business.appointment.confirmed',
     label: 'Appointment Confirmed',
     group: 'business',

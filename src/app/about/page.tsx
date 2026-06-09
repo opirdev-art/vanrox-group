@@ -1,3 +1,20 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About VANROX | Licensed Surveyors & Engineers in Trinidad & Tobago',
+  description:
+    'Meet the team behind VANROX Engineering and Surveying Services — 15+ years of licensed land surveying and engineering excellence across Trinidad & Tobago. Precision, compliance, and integrity on every project.',
+  alternates: {
+    canonical: 'https://www.vanrox-group.com/about',
+  },
+  openGraph: {
+    title: 'About VANROX | Licensed Surveyors & Engineers in Trinidad & Tobago',
+    description:
+      '15+ years of land surveying and engineering expertise across Trinidad & Tobago. GPS-grade accuracy, T&T licensed, and committed to results you can trust.',
+    url: 'https://www.vanrox-group.com/about',
+  },
+}
+
 export default function AboutPage() {
   const pillars = [
     { icon: '🎯', title: 'Precision', desc: 'State-of-the-art GPS and total station technology for survey-grade accuracy.' },

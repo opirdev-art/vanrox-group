@@ -840,6 +840,42 @@ export type Database = {
           },
         ]
       }
+      reviews: {
+        Row: {
+          approved: boolean
+          author_name: string
+          body: string
+          created_at: string
+          google_review_id: string | null
+          id: number
+          rating: number
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          approved?: boolean
+          author_name: string
+          body: string
+          created_at?: string
+          google_review_id?: string | null
+          id?: never
+          rating: number
+          source?: string
+          updated_at?: string
+        }
+        Update: {
+          approved?: boolean
+          author_name?: string
+          body?: string
+          created_at?: string
+          google_review_id?: string | null
+          id?: never
+          rating?: number
+          source?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       scheduler_settings: {
         Row: {
           booking_horizon_days: number

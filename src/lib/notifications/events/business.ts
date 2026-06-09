@@ -48,6 +48,13 @@ export type BusinessReferralLeadAttributedPayload = {
   partnerId: string
 }
 
+export type BusinessReviewSubmittedPayload = {
+  reviewId: string
+  authorName: string
+  rating: number
+  bodyPreview: string
+}
+
 export type BusinessBookingCreatedEvent = DomainEventEnvelope<
   'business.booking.created',
   BusinessBookingCreatedPayload
@@ -76,6 +83,10 @@ export type BusinessReferralLeadAttributedEvent = DomainEventEnvelope<
   'business.referral.lead_attributed',
   BusinessReferralLeadAttributedPayload
 >
+export type BusinessReviewSubmittedEvent = DomainEventEnvelope<
+  'business.review.submitted',
+  BusinessReviewSubmittedPayload
+>
 
 export type BusinessDomainEvent =
   | BusinessBookingCreatedEvent
@@ -85,3 +96,4 @@ export type BusinessDomainEvent =
   | BusinessAppointmentRescheduledEvent
   | BusinessAppointmentCancelledEvent
   | BusinessReferralLeadAttributedEvent
+  | BusinessReviewSubmittedEvent

@@ -6,6 +6,7 @@ import {
   Settings,
   MessageSquare,
   Briefcase,
+  Star,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -21,6 +22,7 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
   { icon: Calendar, label: 'Scheduler', href: '/admin/scheduler' },
   { icon: Briefcase, label: 'Services', href: '/admin/services' },
   { icon: FileText, label: 'Blog Posts', href: '/admin/blog' },
+  { icon: Star, label: 'Reviews', href: '/admin/reviews' },
   { icon: Users, label: 'Referrals', href: '/admin/referrals' },
   { icon: Settings, label: 'Settings', href: '/admin/settings' },
 ]

@@ -1,7 +1,23 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Calendar, User } from 'lucide-react'
 import { getPublishedBlogPosts, getAllBlogCategories } from '@/lib/blog/queries'
 import type { BlogPostSummary } from '@/lib/blog/types'
+
+export const metadata: Metadata = {
+  title: 'Land Surveying Insights & Guides | VANROX Engineering',
+  description:
+    'Expert articles on land surveying, boundary disputes, property development, and regulatory compliance in Trinidad & Tobago. Stay informed with guidance from VANROX Engineering.',
+  alternates: {
+    canonical: 'https://www.vanrox-group.com/insights',
+  },
+  openGraph: {
+    title: 'Land Surveying Insights & Guides | VANROX Engineering',
+    description:
+      'Guides on land surveying, boundary disputes, property development, and regulatory compliance in T&T — from the experts at VANROX.',
+    url: 'https://www.vanrox-group.com/insights',
+  },
+}
 
 export default async function InsightsPage({
   searchParams,

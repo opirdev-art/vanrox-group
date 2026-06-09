@@ -120,8 +120,8 @@ export function AdminShell({
         </div>
       </header>
 
-      <aside className="hidden lg:flex w-64 shrink-0 border-r border-white/5 bg-navy-light flex-col">
-        <div className="px-4 pt-6 pb-2 flex items-center justify-between gap-2">
+      <aside className="hidden lg:flex w-64 shrink-0 border-r border-white/5 bg-navy-light flex-col overflow-visible">
+        <div className="px-4 pt-6 pb-2 flex items-center justify-between gap-2 overflow-visible">
           <span className="font-bebas text-lg tracking-[2px] text-white">VANROX</span>
           <NotificationBell
             initialNotifications={initialNotifications}

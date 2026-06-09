@@ -17,6 +17,7 @@ export const DOMAIN_EVENT_TYPES = [
   'business.appointment.rescheduled',
   'business.appointment.cancelled',
   'business.referral.lead_attributed',
+  'business.review.submitted',
   'content.case_study.published',
   'content.blog_post.published',
   'auth.login.succeeded',
@@ -154,6 +155,15 @@ function validatePayload(eventType: DomainEventType, payload: Record<string, unk
       return requireFields('appointmentId')
     case 'business.referral.lead_attributed':
       return requireFields('leadId', 'partnerId')
+    case 'business.review.submitted': {
+      const fields = requireFields('reviewId', 'authorName')
+      if (isParseFailure(fields)) return fields
+      const rating = payload.rating
+      if (typeof rating !== 'number' || !Number.isInteger(rating) || rating < 1 || rating > 5) {
+        return { ok: false, error: 'payload.rating must be an integer between 1 and 5' }
+      }
+      return { ok: true, data: payload }
+    }
     case 'content.case_study.published':
       return requireFields('caseStudyId', 'title', 'slug')
     case 'content.blog_post.published':

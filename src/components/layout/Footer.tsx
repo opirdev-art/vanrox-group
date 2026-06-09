@@ -22,6 +22,7 @@ export default function Footer() {
           <li><Link href="/" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Home</Link></li>
           <li><Link href="/about" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">About</Link></li>
           <li><Link href="/services" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Services</Link></li>
+          <li><Link href="/reviews" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Reviews</Link></li>
           <li><Link href="/insights" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Insights</Link></li>
           <li><Link href="/schedule" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Book Now</Link></li>
         </ul>

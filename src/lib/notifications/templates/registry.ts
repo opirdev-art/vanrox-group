@@ -13,6 +13,7 @@ const BUSINESS_EVENT_TYPES = new Set<DomainEventType>([
   'business.appointment.confirmed',
   'business.appointment.rescheduled',
   'business.appointment.cancelled',
+  'business.review.submitted',
 ])
 
 type TemplateBundle = {
@@ -30,6 +31,8 @@ function defaultHref(event: DomainEvent): string | null {
     case 'business.appointment.rescheduled':
     case 'business.appointment.cancelled':
       return `/admin/scheduler`
+    case 'business.review.submitted':
+      return '/admin/reviews'
     case 'content.case_study.published':
       return `/services/${(event.payload as { slug?: string }).slug ?? ''}`
     case 'content.blog_post.published':
@@ -62,6 +65,11 @@ function titleFor(eventType: DomainEventType, event: DomainEvent): string {
       return 'Appointment rescheduled'
     case 'business.appointment.cancelled':
       return 'Appointment cancelled'
+    case 'business.review.submitted': {
+      const rating = payload.rating
+      const stars = typeof rating === 'number' ? `${rating}★` : ''
+      return `New review from ${payload.authorName ?? 'a client'}${stars ? ` (${stars})` : ''}`
+    }
     case 'content.case_study.published':
       return `Case study published: ${payload.title ?? 'Untitled'}`
     case 'content.blog_post.published':

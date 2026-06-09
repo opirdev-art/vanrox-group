@@ -108,6 +108,33 @@ export function businessEmailContent(event: DomainEvent): TransactionalEmailCont
       }
     }
 
+    case 'business.review.submitted': {
+      const authorName =
+        typeof payload.authorName === 'string' ? payload.authorName : 'a client'
+      const rating = typeof payload.rating === 'number' ? payload.rating : null
+      const bodyPreview =
+        typeof payload.bodyPreview === 'string' ? payload.bodyPreview.trim() : ''
+      const paragraphs = [
+        `${authorName} submitted a new review${rating ? ` (${rating} out of 5 stars)` : ''}.`,
+      ]
+
+      if (bodyPreview) {
+        paragraphs.push(`"${bodyPreview}"`)
+      }
+
+      paragraphs.push('Approve or reject it in the admin reviews panel.')
+
+      return {
+        preheader: `New review from ${authorName} awaiting approval`,
+        eyebrow,
+        paragraphs,
+        cta: {
+          label: 'Moderate review',
+          url: `${getAppOrigin()}/admin/reviews`,
+        },
+      }
+    }
+
     case 'business.appointment.cancelled': {
       const title = typeof payload.title === 'string' ? payload.title : 'An appointment'
       const scheduledAt = typeof payload.scheduledAt === 'string' ? payload.scheduledAt : null
@@ -149,6 +176,15 @@ export function businessInAppBody(eventType: DomainEventType, payload: Record<st
       return typeof payload.scheduledAt === 'string'
         ? `Was scheduled for ${payload.scheduledAt}`
         : null
+    case 'business.review.submitted': {
+      const rating = typeof payload.rating === 'number' ? `${payload.rating}★` : null
+      const preview =
+        typeof payload.bodyPreview === 'string' && payload.bodyPreview.trim()
+          ? payload.bodyPreview.trim()
+          : null
+      if (rating && preview) return `${rating} — ${preview}`
+      return rating ?? preview
+    }
     default:
       return null
   }

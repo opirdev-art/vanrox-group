@@ -51,6 +51,11 @@ export const EVENT_ROUTING: Record<DomainEventType, EventRouting> = {
     inApp: ['all_admins'],
     email: 'off',
   },
+  'business.review.submitted': {
+    eventType: 'business.review.submitted',
+    inApp: ['all_admins'],
+    email: ['all_admins'],
+  },
   'content.case_study.published': {
     eventType: 'content.case_study.published',
     inApp: ['all_admins'],

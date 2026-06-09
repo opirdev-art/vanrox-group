@@ -1,8 +1,24 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { displayPhone, phoneTelHref } from '@/lib/settings/contact'
 import { getBusinessSettings } from '@/lib/settings/queries'
 import { getActiveServices } from '@/lib/services/queries'
+
+export const metadata: Metadata = {
+  title: 'Surveying & Engineering Services | VANROX | Trinidad & Tobago',
+  description:
+    'Land surveys, boundary surveys, topographic surveys, cadastral mapping, and engineering consultancy in Trinidad & Tobago. VANROX delivers survey-grade precision with 500+ projects completed.',
+  alternates: {
+    canonical: 'https://www.vanrox-group.com/services',
+  },
+  openGraph: {
+    title: 'Surveying & Engineering Services | VANROX | Trinidad & Tobago',
+    description:
+      'Boundary surveys, topographic surveys, cadastral mapping, and engineering consultancy across T&T. 500+ projects. Licensed. Trusted.',
+    url: 'https://www.vanrox-group.com/services',
+  },
+}
 
 export default async function ServicesPage() {
   const business = await getBusinessSettings()
