@@ -61,34 +61,72 @@ export default async function AdminSchedulerPage({
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2 bg-navy-light border border-white/5 rounded-xl p-8 shadow-lg">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="font-barlow-condensed text-xl font-bold tracking-widest uppercase">
+        <div className="lg:col-span-2 bg-navy-light border border-white/5 rounded-xl p-4 sm:p-8 shadow-lg">
+          <div className="flex items-center justify-between mb-6 lg:mb-8">
+            <h3 className="font-barlow-condensed text-lg sm:text-xl font-bold tracking-widest uppercase">
               {MONTH_NAMES[month - 1]} {year}
             </h3>
             <div className="flex gap-2">
               <Link
                 href={`/admin/scheduler?year=${prevMonth.year}&month=${prevMonth.month}`}
-                className="p-2 hover:bg-white/5 rounded-md text-gray hover:text-white text-sm"
+                className="inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-white/5 rounded-md text-gray hover:text-white text-sm"
               >
                 ←
               </Link>
               <Link
                 href={`/admin/scheduler?year=${nextMonth.year}&month=${nextMonth.month}`}
-                className="p-2 hover:bg-white/5 rounded-md text-gray hover:text-white text-sm"
+                className="inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-white/5 rounded-md text-gray hover:text-white text-sm"
               >
                 →
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold tracking-widest text-gray uppercase mb-4">
+          {/* Mobile agenda */}
+          <div className="lg:hidden space-y-3 mb-6">
+            {Array.from({ length: daysInMonth }).map((_, i) => {
+              const day = i + 1
+              const dayAppointments = appointments.filter((a) => {
+                const d = new Date(a.start_time)
+                return d.getFullYear() === year && d.getMonth() === month - 1 && d.getDate() === day
+              })
+              if (dayAppointments.length === 0) return null
+
+              return (
+                <div key={`mobile-day-${day}`} className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
+                  <p className="text-sm font-barlow-condensed font-bold tracking-widest uppercase text-white mb-3">
+                    {MONTH_NAMES[month - 1]} {day}
+                  </p>
+                  <div className="space-y-2">
+                    {dayAppointments.map((appt) => (
+                      <div
+                        key={appt.id}
+                        className={`p-3 rounded-md border text-sm ${
+                          appt.is_blockout
+                            ? 'bg-red-500/5 border-red-500/20'
+                            : 'bg-white/[0.02] border-white/5'
+                        }`}
+                      >
+                        <p className="text-white font-medium">{appt.title}</p>
+                        <p className="text-xs text-gray mt-1">{formatLeadDate(appt.start_time)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+            {appointments.length === 0 && (
+              <p className="text-gray text-sm">No appointments or blockouts this month.</p>
+            )}
+          </div>
+
+          <div className="hidden lg:grid grid-cols-7 gap-2 text-center text-xs font-bold tracking-widest text-gray uppercase mb-4">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
               <div key={d}>{d}</div>
             ))}
           </div>
 
-          <div className="grid grid-cols-7 gap-2">
+          <div className="hidden lg:grid grid-cols-7 gap-2">
             {Array.from({ length: firstWeekday }).map((_, i) => (
               <div key={`pad-${i}`} className="aspect-square" />
             ))}

@@ -50,7 +50,8 @@ export default async function AdminServicesPage() {
         </div>
       ) : (
         <section className="bg-navy-light border border-white/5 rounded-xl overflow-hidden">
-          <table className="w-full text-left">
+          <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[640px]">
             <thead>
               <tr className="border-b border-white/5 text-[0.7rem] text-gray uppercase tracking-widest font-bold bg-white/[0.02]">
                 <th className="px-6 py-4">Service</th>
@@ -103,6 +104,7 @@ export default async function AdminServicesPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </section>
       )}
     </div>

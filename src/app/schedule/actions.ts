@@ -5,6 +5,11 @@ import { parseBookingRequest } from '@/lib/booking/validation'
 import { normalizePhone } from '@/lib/booking/phone'
 import { fetchAvailableSlotsForDate } from '@/lib/booking/queries'
 import { REFERRAL_COOKIE_NAME, sanitizeReferralCode } from '@/lib/referrals/cookie'
+import { displayPhone } from '@/lib/settings/contact'
+import { getBusinessSettings } from '@/lib/settings/queries'
+import { formatPreferredSlot } from '@/lib/leads/format'
+import { notify } from '@/lib/notifications'
+import { logNotifyFailure } from '@/lib/notifications/log-notify-failure'
 import { createClient } from '@/utils/supabase/server'
 
 export type BookingResult =
@@ -68,8 +73,38 @@ export async function submitBookingRequest(input: unknown): Promise<BookingResul
   }
 
   if (!leadId) {
-    return { ok: false, error: 'Booking failed. Please try again or call 2721240.' }
+    const business = await getBusinessSettings()
+    const phone = displayPhone(business.phone)
+    return { ok: false, error: `Booking failed. Please try again or call ${phone}.` }
   }
+
+  const { data: service } = await supabase
+    .from('services')
+    .select('name')
+    .eq('id', data.serviceId)
+    .maybeSingle()
+
+  const customerEmail = data.email?.trim()
+  const occurredAt = new Date().toISOString()
+  const notifyResult = await notify({
+    eventId: crypto.randomUUID(),
+    eventType: 'business.booking.created',
+    occurredAt,
+    actorId: null,
+    aggregateId: leadId,
+    source: 'server_action',
+    sourceEventKey: `booking:${leadId}`,
+    payload: {
+      leadId,
+      customerName: data.fullName,
+      serviceName: service?.name,
+      preferredWindow: formatPreferredSlot(data.preferredStart, data.preferredEnd),
+      siteLocation: data.siteLocation,
+      customerEmail: customerEmail || undefined,
+    },
+  })
+
+  logNotifyFailure('booking trigger failed', notifyResult, { leadId })
 
   return { ok: true, leadId }
 }

@@ -164,6 +164,13 @@
   max-width: none;
 }
 
+@media (max-width: 767px) {
+  .cs-body figure[data-block="media"][data-layout="full"] {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .cs-body figure[data-block="media"] img {
   width: 100%;
   border-radius: 0.5rem;
@@ -197,10 +204,22 @@
 
 /* ── Tables ──────────────────────────────────────────────────────────────── */
 .cs-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   width: 100%;
   margin: 1.5rem 0;
   font-size: 0.9rem;
+}
+
+.cs-body table thead,
+.cs-body table tbody,
+.cs-body table tr {
+  display: table;
+  width: 100%;
+  table-layout: auto;
 }
 
 .cs-body th,

@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          event_id: string
+          href: string | null
+          id: number
+          is_read: boolean
+          metadata: Json
+          read_at: string | null
+          recipient_profile_id: string
+          title: string
+          type: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          event_id: string
+          href?: string | null
+          id?: never
+          is_read?: boolean
+          metadata?: Json
+          read_at?: string | null
+          recipient_profile_id: string
+          title: string
+          type: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          event_id?: string
+          href?: string | null
+          id?: never
+          is_read?: boolean
+          metadata?: Json
+          read_at?: string | null
+          recipient_profile_id?: string
+          title?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_notifications_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "notification_events"
+            referencedColumns: ["event_id"]
+          },
+          {
+            foreignKeyName: "admin_notifications_recipient_profile_id_fkey"
+            columns: ["recipient_profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       appointments: {
         Row: {
           assigned_staff_id: string | null
@@ -206,6 +263,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      business_settings: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          id: number
+          metadata: Json
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: number
+          metadata?: Json
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: number
+          metadata?: Json
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       case_studies: {
         Row: {
@@ -436,6 +523,118 @@ export type Database = {
             columns: ["service_id"]
             isOneToOne: false
             referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_deliveries: {
+        Row: {
+          attempt_count: number
+          channel: string
+          created_at: string
+          event_id: string
+          id: number
+          idempotency_key: string
+          last_attempt_at: string | null
+          last_error: string | null
+          max_attempts: number
+          next_retry_at: string | null
+          provider: string | null
+          provider_message_id: string | null
+          recipient_key: string
+          retryable: boolean
+          sent_at: string | null
+          status: string
+        }
+        Insert: {
+          attempt_count?: number
+          channel: string
+          created_at?: string
+          event_id: string
+          id?: never
+          idempotency_key: string
+          last_attempt_at?: string | null
+          last_error?: string | null
+          max_attempts?: number
+          next_retry_at?: string | null
+          provider?: string | null
+          provider_message_id?: string | null
+          recipient_key: string
+          retryable?: boolean
+          sent_at?: string | null
+          status: string
+        }
+        Update: {
+          attempt_count?: number
+          channel?: string
+          created_at?: string
+          event_id?: string
+          id?: never
+          idempotency_key?: string
+          last_attempt_at?: string | null
+          last_error?: string | null
+          max_attempts?: number
+          next_retry_at?: string | null
+          provider?: string | null
+          provider_message_id?: string | null
+          recipient_key?: string
+          retryable?: boolean
+          sent_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_deliveries_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "notification_events"
+            referencedColumns: ["event_id"]
+          },
+        ]
+      }
+      notification_events: {
+        Row: {
+          actor_id: string | null
+          aggregate_id: string
+          created_at: string
+          event_id: string
+          event_type: string
+          id: number
+          occurred_at: string
+          payload: Json
+          source: string
+          source_event_key: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          aggregate_id: string
+          created_at?: string
+          event_id: string
+          event_type: string
+          id?: never
+          occurred_at: string
+          payload?: Json
+          source: string
+          source_event_key?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          aggregate_id?: string
+          created_at?: string
+          event_id?: string
+          event_type?: string
+          id?: never
+          occurred_at?: string
+          payload?: Json
+          source?: string
+          source_event_key?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_events_actor_id_fkey"
+            columns: ["actor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -805,6 +1004,7 @@ export type Database = {
         Returns: undefined
       }
       is_admin: { Args: never; Returns: boolean }
+      is_super_admin: { Args: never; Returns: boolean }
       time_to_minutes: { Args: { p_time: string }; Returns: number }
     }
     Enums: {

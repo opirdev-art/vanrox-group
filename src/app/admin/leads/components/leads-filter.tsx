@@ -10,7 +10,7 @@ export function LeadsFilter({ active }: { active: string }) {
         <Link
           key={filter.value}
           href={filter.value === 'all' ? '/admin/leads' : `/admin/leads?status=${filter.value}`}
-          className={`text-[0.65rem] px-3 py-1.5 rounded-full font-bold tracking-widest uppercase border transition-all ${
+          className={`inline-flex items-center min-h-11 text-[0.65rem] px-4 rounded-full font-bold tracking-widest uppercase border transition-all ${
             active === filter.value
               ? 'bg-green/10 border-green text-green'
               : 'border-white/10 text-gray hover:border-white/20 hover:text-white'

@@ -13,7 +13,7 @@ export default async function AdminBlogPage() {
 
   return (
     <div className="space-y-10">
-      <header className="flex justify-between items-end">
+      <header className="flex flex-wrap justify-between items-end gap-4">
         <div>
           <h1 className="font-bebas text-4xl tracking-[3px] text-white">Content Hub</h1>
           <p className="text-gray font-light mt-1">

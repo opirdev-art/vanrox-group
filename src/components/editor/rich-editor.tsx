@@ -89,7 +89,7 @@ export const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(
         key={label}
         type="button"
         onClick={onClick}
-        className={`px-2 py-1 rounded text-[11px] font-medium transition-colors
+        className={`inline-flex items-center justify-center min-h-9 min-w-9 px-2.5 rounded text-[11px] font-medium transition-colors
           ${active
             ? 'bg-green/20 text-green border border-green/40'
             : 'text-gray hover:bg-white/5 hover:text-white border border-transparent'
@@ -113,7 +113,7 @@ export const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(
     return (
       <div className="flex flex-col h-full">
         {/* ── Toolbar ─────────────────────────────────────────────────── */}
-        <div className="sticky top-0 z-10 bg-navy-light border-b border-white/8 px-3 py-1.5 flex flex-wrap gap-1 items-center">
+        <div className="sticky top-0 z-10 bg-navy-light border-b border-white/8 px-2 sm:px-3 py-2 flex flex-wrap gap-1.5 items-center">
           {btn('B', isActive('bold'), () => editor.chain().focus().toggleBold().run())}
           {btn('I', isActive('italic'), () => editor.chain().focus().toggleItalic().run())}
           {btn('U', isActive('underline'), () => editor.chain().focus().toggleUnderline().run())}
@@ -145,7 +145,7 @@ export const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(
           ) : (
             <button
               type="button"
-              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors border ${isActive('link') ? 'bg-green/20 text-green border-green/40' : 'text-gray hover:bg-white/5 hover:text-white border-transparent'}`}
+              className={`inline-flex items-center justify-center min-h-9 px-2.5 rounded text-[11px] font-medium transition-colors border ${isActive('link') ? 'bg-green/20 text-green border-green/40' : 'text-gray hover:bg-white/5 hover:text-white border-transparent'}`}
               onClick={() => { setLinkValue((editor.getAttributes('link').href as string | undefined) ?? ''); setShowLinkInput(true) }}
             >
               🔗 Link
@@ -157,7 +157,7 @@ export const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(
             <button
               type="button"
               onClick={onOpenMedia}
-              className="px-2.5 py-1 rounded text-[11px] font-semibold border border-green/50 text-green hover:bg-green/10 transition-colors"
+              className="inline-flex items-center justify-center min-h-9 px-3 rounded text-[11px] font-semibold border border-green/50 text-green hover:bg-green/10 transition-colors"
             >
               + Media
             </button>
@@ -168,7 +168,7 @@ export const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(
         </div>
 
         {/* ── Editor content ───────────────────────────────────────────── */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           <EditorContent editor={editor} />
         </div>
       </div>

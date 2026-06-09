@@ -96,7 +96,7 @@ export function SiteLocationPicker({ value, onChange }: SiteLocationPickerProps)
           type="button"
           onClick={useMyLocation}
           disabled={locating}
-          className="flex items-center gap-2 text-[0.65rem] uppercase tracking-widest font-bold text-green border border-green/30 px-3 py-2 rounded-lg hover:bg-green/10 transition disabled:opacity-50"
+          className="flex items-center justify-center gap-2 min-h-11 text-[0.7rem] uppercase tracking-widest font-bold text-green border border-green/30 px-4 py-2 rounded-lg hover:bg-green/10 transition disabled:opacity-50"
         >
           {locating ? <Loader2 size={14} className="animate-spin" /> : <Crosshair size={14} />}
           Use my location

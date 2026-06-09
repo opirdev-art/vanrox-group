@@ -40,6 +40,21 @@ export async function updateSession(request: NextRequest) {
   const isAdminRoute = pathname.startsWith('/admin')
   const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/auth')
 
+  if (
+    user &&
+    isAdminRoute &&
+    user.app_metadata?.invite_pending === true &&
+    pathname !== '/admin/welcome'
+  ) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/admin/welcome'
+    const redirectResponse = NextResponse.redirect(url)
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return redirectResponse
+  }
+
   if (!user && isAdminRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'

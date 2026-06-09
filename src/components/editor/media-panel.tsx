@@ -86,10 +86,10 @@ export function MediaPanel({
   return (
     <>
       <div className="fixed inset-0 bg-black/40 z-40" onClick={onClose} />
-      <div className="fixed right-0 top-0 h-full w-80 bg-navy-light border-l border-white/8 z-50 flex flex-col overflow-y-auto shadow-2xl">
+      <div className="fixed inset-y-0 right-0 h-full w-full sm:w-80 max-w-full bg-navy-light border-l border-white/8 z-50 flex flex-col overflow-y-auto shadow-2xl">
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/8">
           <h3 className="font-barlow-condensed text-base uppercase tracking-[1.5px] text-white">Media</h3>
-          <button type="button" onClick={onClose} className="text-gray hover:text-white text-xl leading-none">×</button>
+          <button type="button" onClick={onClose} className="inline-flex items-center justify-center min-h-11 min-w-11 text-gray hover:text-white text-xl leading-none">×</button>
         </div>
 
         <div className="flex-1 p-5 space-y-6">

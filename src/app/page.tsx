@@ -1,10 +1,12 @@
 import Hero from "@/components/home/Hero";
+import { getBusinessSettings } from "@/lib/settings/queries";
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getBusinessSettings();
+
   return (
     <>
-      <Hero />
-      {/* Other sections will go here: About, Services, etc. */}
+      <Hero serviceArea={settings.address || undefined} />
     </>
   );
 }

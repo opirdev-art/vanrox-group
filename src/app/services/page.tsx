@@ -1,8 +1,13 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { displayPhone, phoneTelHref } from '@/lib/settings/contact'
+import { getBusinessSettings } from '@/lib/settings/queries'
 import { getActiveServices } from '@/lib/services/queries'
 
 export default async function ServicesPage() {
+  const business = await getBusinessSettings()
+  const contactPhone = displayPhone(business.phone)
+  const contactTelHref = phoneTelHref(business.phone)
   let services: Awaited<ReturnType<typeof getActiveServices>> = []
   let loadError: string | null = null
 
@@ -42,8 +47,8 @@ export default async function ServicesPage() {
         {services.length === 0 && !loadError ? (
           <p className="text-gray text-center py-12">
             Services are being updated. Please call{' '}
-            <a href="tel:+18682721240" className="text-green hover:underline">
-              2721240
+            <a href={contactTelHref} className="text-green hover:underline">
+              {contactPhone}
             </a>{' '}
             to discuss your project.
           </p>

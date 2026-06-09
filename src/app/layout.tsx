@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import { BusinessSettingsProvider } from "@/components/layout/business-settings-provider";
+import ChromeShell from "@/components/layout/ChromeShell";
+import PublicMobileBodyAttr from "@/components/layout/PublicMobileBodyAttr";
+import { getBusinessSettings } from "@/lib/settings/queries";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -27,22 +29,29 @@ export const metadata: Metadata = {
   description: "Professional land surveying and engineering services across Trinidad & Tobago. Precision you can trust.",
 };
 
-export default function RootLayout({
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const businessSettings = await getBusinessSettings();
+
   return (
     <html
       lang="en"
       className={`${bebasNeue.variable} ${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-barlow bg-navy text-white selection:bg-green selection:text-navy">
-        <Navbar />
-        <main className="flex-grow pt-20">
-          {children}
-        </main>
-        <Footer />
+        <PublicMobileBodyAttr />
+        <BusinessSettingsProvider value={businessSettings}>
+          <ChromeShell>{children}</ChromeShell>
+        </BusinessSettingsProvider>
       </body>
     </html>
   );

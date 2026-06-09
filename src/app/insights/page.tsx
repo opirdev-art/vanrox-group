@@ -40,7 +40,7 @@ export default async function InsightsPage({
           <div className="flex flex-wrap gap-2 mb-10">
             <Link
               href="/insights"
-              className={`px-4 py-2 rounded-sm font-barlow-condensed text-[0.7rem] font-bold tracking-widest uppercase transition-colors ${
+              className={`inline-flex items-center min-h-11 px-4 rounded-sm font-barlow-condensed text-[0.7rem] font-bold tracking-widest uppercase transition-colors ${
                 !categorySlug ? 'bg-green text-navy' : 'border border-white/10 text-gray hover:text-white'
               }`}
             >
@@ -50,7 +50,7 @@ export default async function InsightsPage({
               <Link
                 key={cat.id}
                 href={`/insights?category=${cat.slug}`}
-                className={`px-4 py-2 rounded-sm font-barlow-condensed text-[0.7rem] font-bold tracking-widest uppercase transition-colors ${
+                className={`inline-flex items-center min-h-11 px-4 rounded-sm font-barlow-condensed text-[0.7rem] font-bold tracking-widest uppercase transition-colors ${
                   categorySlug === cat.slug ? 'bg-green text-navy' : 'border border-white/10 text-gray hover:text-white'
                 }`}
               >
@@ -79,7 +79,7 @@ export default async function InsightsPage({
             {page > 1 && (
               <Link
                 href={`/insights?${categorySlug ? `category=${categorySlug}&` : ''}page=${page - 1}`}
-                className="px-5 py-2 border border-white/10 text-gray hover:text-white rounded-sm text-sm uppercase tracking-widest font-barlow-condensed font-bold"
+                className="inline-flex items-center min-h-11 px-5 border border-white/10 text-gray hover:text-white rounded-sm text-sm uppercase tracking-widest font-barlow-condensed font-bold"
               >
                 ← Prev
               </Link>
@@ -90,7 +90,7 @@ export default async function InsightsPage({
             {page < totalPages && (
               <Link
                 href={`/insights?${categorySlug ? `category=${categorySlug}&` : ''}page=${page + 1}`}
-                className="px-5 py-2 border border-white/10 text-gray hover:text-white rounded-sm text-sm uppercase tracking-widest font-barlow-condensed font-bold"
+                className="inline-flex items-center min-h-11 px-5 border border-white/10 text-gray hover:text-white rounded-sm text-sm uppercase tracking-widest font-barlow-condensed font-bold"
               >
                 Next →
               </Link>
@@ -134,7 +134,7 @@ function PostCard({ post }: { post: BlogPostSummary }) {
       </div>
 
       <div className="p-8 flex-grow flex flex-col">
-        <div className="flex items-center gap-4 text-gray text-[0.75rem] mb-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray text-[0.75rem] mb-4">
           {formattedDate && (
             <div className="flex items-center gap-1.5">
               <Calendar size={13} />
@@ -159,7 +159,7 @@ function PostCard({ post }: { post: BlogPostSummary }) {
 
         <Link
           href={`/insights/${post.slug}`}
-          className="mt-auto text-green text-[0.85rem] font-bold tracking-widest uppercase flex items-center gap-2 hover:gap-3 transition-all"
+          className="mt-auto inline-flex items-center min-h-11 text-green text-[0.85rem] font-bold tracking-widest uppercase gap-2 hover:gap-3 transition-all"
         >
           Read Article <ArrowRight size={16} />
         </Link>

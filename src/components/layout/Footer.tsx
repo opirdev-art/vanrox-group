@@ -1,31 +1,29 @@
+'use client'
+
 import Link from 'next/link'
+import { useBusinessSettings } from './business-settings-provider'
+import { displayPhone, mailtoHref, phoneTelHref } from '@/lib/settings/contact'
+import { VanroxLogo } from './VanroxLogo'
 
 export default function Footer() {
+  const { phone, email, address } = useBusinessSettings()
+  const telHref = phoneTelHref(phone)
+  const emailHref = mailtoHref(email)
+  const phoneLabel = displayPhone(phone)
+
   return (
-    <footer className="bg-[#081526] px-15 py-12 border-t border-green/10">
+    <footer className="site-footer bg-[#081526] px-6 md:px-15 py-12 border-t border-green/10">
       <div className="flex flex-wrap justify-between items-center pb-6 border-b border-white/5 gap-5">
         <div className="flex items-center gap-3.5">
-          <svg className="w-9 h-9" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 3L6 9v14c0 9 7 16.5 16 18 9-1.5 16-9 16-18V9L22 3z" fill="#162847" stroke="#7dc242" strokeWidth="1.2"/>
-            <path d="M22 11l-7 6h2v7h10v-7h2l-7-6z" fill="white"/>
-            <rect x="19" y="18" width="6" height="6" fill="#0d1f3c"/>
-            <rect x="20" y="19" width="3" height="2" fill="#7dc242"/>
-            <ellipse cx="22" cy="28" rx="8" ry="4" fill="#7dc242" opacity="0.7"/>
-          </svg>
-          <div>
-            <div className="font-bebas text-xl text-white tracking-[3px]">VANROX</div>
-            <div className="font-barlow-condensed text-[0.55rem] text-green tracking-[2px] font-semibold uppercase">
-              Engineering & Surveying Services
-            </div>
-          </div>
+          <VanroxLogo size="sm" showSubtitle />
         </div>
 
-        <ul className="flex flex-wrap gap-7 list-none">
-          <li><Link href="/" className="text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Home</Link></li>
-          <li><Link href="/about" className="text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">About</Link></li>
-          <li><Link href="/services" className="text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Services</Link></li>
-          <li><Link href="/insights" className="text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Insights</Link></li>
-          <li><Link href="/contact" className="text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Contact</Link></li>
+        <ul className="flex flex-wrap gap-3 list-none m-0 p-0">
+          <li><Link href="/" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Home</Link></li>
+          <li><Link href="/about" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">About</Link></li>
+          <li><Link href="/services" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Services</Link></li>
+          <li><Link href="/insights" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Insights</Link></li>
+          <li><Link href="/schedule" className="inline-flex items-center min-h-11 px-2 text-gray hover:text-green text-[0.8rem] font-medium tracking-[1.5px] uppercase transition-colors">Book Now</Link></li>
         </ul>
       </div>
 
@@ -42,8 +40,26 @@ export default function Footer() {
             Staff
           </Link>
         </div>
-        <div className="font-barlow-condensed text-[0.75rem] font-semibold tracking-[3px] uppercase text-gray/50">
-          Mapping a Better Future | Tobago: 2721240
+        <div className="font-barlow-condensed text-[0.75rem] font-semibold tracking-[3px] uppercase text-gray/50 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>Mapping a Better Future</span>
+          {address && <span className="hidden sm:inline text-white/20">|</span>}
+          {address && <span>{address}</span>}
+          {phoneLabel && (
+            <>
+              <span className="text-white/20">|</span>
+              <a href={telHref} className="text-gray/70 hover:text-green transition-colors no-underline">
+                {phoneLabel}
+              </a>
+            </>
+          )}
+          {emailHref && (
+            <>
+              <span className="text-white/20">|</span>
+              <a href={emailHref} className="text-gray/70 hover:text-green transition-colors no-underline">
+                {email}
+              </a>
+            </>
+          )}
         </div>
       </div>
     </footer>

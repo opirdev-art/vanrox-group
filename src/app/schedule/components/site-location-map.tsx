@@ -39,7 +39,7 @@ export function SiteLocationMap({ position, onPick }: SiteLocationMapProps) {
     <MapContainer
       center={[center.lat, center.lng]}
       zoom={13}
-      scrollWheelZoom
+      scrollWheelZoom={false}
       className="h-full w-full rounded-xl z-0"
       maxBounds={[
         [TT_BOUNDS.minLat, TT_BOUNDS.minLng],

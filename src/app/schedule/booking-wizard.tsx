@@ -16,9 +16,16 @@ type Slot = { slot_start: string; slot_end: string }
 type BookingWizardProps = {
   services: ServiceOption[]
   initialServiceId?: number | null
+  contactPhone: string
+  contactTelHref: string
 }
 
-export function BookingWizard({ services, initialServiceId = null }: BookingWizardProps) {
+export function BookingWizard({
+  services,
+  initialServiceId = null,
+  contactPhone,
+  contactTelHref,
+}: BookingWizardProps) {
   const preselected = initialServiceId
     ? services.find((s) => s.id === initialServiceId)
     : null
@@ -119,7 +126,7 @@ export function BookingWizard({ services, initialServiceId = null }: BookingWiza
         ))}
       </div>
 
-      <div className="bg-navy-light border border-white/5 rounded-2xl p-8 md:p-12 shadow-2xl">
+      <div className="bg-navy-light border border-white/5 rounded-2xl p-5 sm:p-8 md:p-12 shadow-2xl">
         {step === 1 && (
           <div className="space-y-8">
             <h2 className="font-barlow-condensed text-2xl font-bold tracking-widest uppercase text-white mb-6">
@@ -128,8 +135,8 @@ export function BookingWizard({ services, initialServiceId = null }: BookingWiza
             {services.length === 0 ? (
               <p className="text-gray text-sm">
                 No bookable services are available right now. Please call{' '}
-                <a href="tel:+18682721240" className="text-green hover:underline">
-                  2721240
+                <a href={contactTelHref} className="text-green hover:underline">
+                  {contactPhone}
                 </a>
                 .
               </p>
@@ -190,13 +197,13 @@ export function BookingWizard({ services, initialServiceId = null }: BookingWiza
             {slotsError && <p className="text-yellow-400 text-sm">{slotsError}</p>}
 
             {slots.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {slots.map((slot) => (
                   <button
                     key={slot.slot_start}
                     type="button"
                     onClick={() => setSelectedSlot(slot)}
-                    className={`py-3 px-4 rounded-lg border text-sm font-barlow-condensed font-bold tracking-widest uppercase transition-all ${
+                    className={`min-h-11 py-3 px-4 rounded-lg border text-sm font-barlow-condensed font-bold tracking-wide sm:tracking-widest uppercase transition-all ${
                       selectedSlot?.slot_start === slot.slot_start
                         ? 'bg-green/10 border-green text-green'
                         : 'border-white/10 text-gray hover:border-white/20'
@@ -257,7 +264,7 @@ export function BookingWizard({ services, initialServiceId = null }: BookingWiza
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="2721240"
+                    placeholder={contactPhone}
                     className="w-full bg-white/5 border border-white/10 rounded-lg py-3.5 pl-12 pr-4 focus:border-green outline-none text-white"
                   />
                 </div>
@@ -339,7 +346,10 @@ export function BookingWizard({ services, initialServiceId = null }: BookingWiza
                   </>
                 )}
                 . We will confirm your site visit within one business day. For urgent matters call{' '}
-                <span className="text-green">2721240</span>.
+                <a href={contactTelHref} className="text-green hover:underline">
+                  {contactPhone}
+                </a>
+                .
               </p>
               {leadId && (
                 <p className="text-xs text-gray mt-4 uppercase tracking-widest">

@@ -99,7 +99,8 @@ export function CaseStudyList({ service, studies: initialStudies }: CaseStudyLis
         </div>
       ) : (
         <section className="bg-navy-light border border-white/5 rounded-xl overflow-hidden">
-          <table className="w-full text-left">
+          <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[560px]">
             <thead>
               <tr className="border-b border-white/5 text-[0.7rem] text-gray uppercase tracking-widest font-bold bg-white/[0.02]">
                 <th className="px-6 py-4">Title</th>
@@ -171,6 +172,7 @@ export function CaseStudyList({ service, studies: initialStudies }: CaseStudyLis
               ))}
             </tbody>
           </table>
+          </div>
         </section>
       )}
     </div>

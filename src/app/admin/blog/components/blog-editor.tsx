@@ -123,18 +123,18 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
   }
 
   return (
-    <div className="min-h-screen bg-navy flex flex-col">
+    <div className="min-h-0 bg-navy flex flex-col">
       {/* ── Top bar ─────────────────────────────────────────────────────── */}
-      <div className="sticky top-0 z-30 bg-navy-mid border-b border-white/8 px-6 py-3 flex items-center gap-4">
+      <div className="sticky top-0 z-30 bg-navy-mid border-b border-white/8 px-4 sm:px-6 py-3 flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={() => router.push('/admin/blog')}
-          className="text-gray hover:text-white text-sm"
+          className="inline-flex items-center min-h-11 text-gray hover:text-white text-sm"
         >
           ← Blog Posts
         </button>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 sm:ml-auto w-full sm:w-auto">
           {saveStatus === 'saving' || isPending ? (
             <span className="text-xs text-gray animate-pulse">Saving…</span>
           ) : saveStatus === 'saved' ? (
@@ -146,7 +146,7 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
           <button
             type="button"
             onClick={() => setPreviewOpen(true)}
-            className="px-3 py-1.5 rounded text-xs font-semibold border border-white/15 text-gray hover:text-white hover:border-white/30 transition-colors"
+            className="inline-flex items-center min-h-11 px-3 rounded text-xs font-semibold border border-white/15 text-gray hover:text-white hover:border-white/30 transition-colors"
           >
             Preview
           </button>
@@ -155,7 +155,7 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
             type="button"
             disabled={isPending}
             onClick={() => save('draft')}
-            className="px-3 py-1.5 rounded text-xs font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors disabled:opacity-40"
+            className="inline-flex items-center min-h-11 px-3 rounded text-xs font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors disabled:opacity-40"
           >
             Save draft
           </button>
@@ -164,7 +164,7 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
             type="button"
             disabled={isPending || !title.trim()}
             onClick={() => save('published')}
-            className={`px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-40 ${
+            className={`inline-flex items-center min-h-11 px-4 rounded text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-40 ${
               status === 'published'
                 ? 'bg-green/20 hover:bg-green/30 text-green border border-green/30'
                 : 'bg-green hover:bg-green-dark text-navy'
@@ -182,22 +182,22 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
       )}
 
       {/* ── Main layout ─────────────────────────────────────────────────── */}
-      <div className="flex flex-1 min-h-0 overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 min-h-0 lg:overflow-hidden">
         {/* ── Editor column ─────────────────────────────────────────────── */}
-        <div className="flex-1 flex flex-col min-h-0 overflow-y-auto">
+        <div className="flex-1 flex flex-col min-h-0 overflow-y-auto order-2 lg:order-1">
           {/* Title */}
-          <div className="px-8 pt-10 pb-2">
+          <div className="px-4 sm:px-8 pt-6 sm:pt-10 pb-2">
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Article title…"
-              className="w-full bg-transparent text-3xl font-bebas tracking-[3px] text-white placeholder-white/20 focus:outline-none border-b border-transparent focus:border-white/10 pb-2 transition-colors"
+              className="w-full bg-transparent text-2xl sm:text-3xl font-bebas tracking-[3px] text-white placeholder-white/20 focus:outline-none border-b border-transparent focus:border-white/10 pb-2 transition-colors"
             />
           </div>
 
           {/* Excerpt */}
-          <div className="px-8 py-3">
+          <div className="px-4 sm:px-8 py-3">
             <textarea
               value={excerpt}
               onChange={(e) => setExcerpt(e.target.value)}
@@ -221,7 +221,7 @@ export function BlogEditor({ categories, existing }: BlogEditorProps) {
         </div>
 
         {/* ── Right sidebar ──────────────────────────────────────────────── */}
-        <aside className="w-72 shrink-0 bg-navy-light border-l border-white/8 overflow-y-auto flex flex-col">
+        <aside className="w-full lg:w-72 shrink-0 bg-navy-light border-b lg:border-b-0 lg:border-l border-white/8 overflow-y-auto flex flex-col order-1 lg:order-2">
           {/* Cover photo */}
           <section className="p-5 border-b border-white/8">
             <h3 className="text-xs uppercase tracking-widest text-gray mb-3">Cover Photo</h3>
